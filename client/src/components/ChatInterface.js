@@ -17,6 +17,10 @@ class ChatInterface extends Component {
         this.HandleUserInput = this.HandleUserInput.bind(this);
     }
 
+    componentDidMount() {
+        this.DeliverMessage('');
+    }
+
     HandleUserInput = input => {
 
         let inputData = { //object added to the conversation array
@@ -28,12 +32,11 @@ class ChatInterface extends Component {
         this.setState({
             conversation: this.state.conversation.concat(inputData),
             lastQuery: inputData.text,
-            turn: inputData.turn
+            turnCount: inputData.turn
+            }, () => {
+                this.DeliverMessage(inputData.text);
         });
 
-        this.DeliverMessage(inputData.text);
-
-        console.log(JSON.stringify(this.state.conversation, false, 4));
     }//HandleUserInput
 
     DeliverMessage = text => {
@@ -46,23 +49,22 @@ class ChatInterface extends Component {
         requestor.responseType = 'text';
         requestor.open('POST', `/api/assistant/message/${text}`);
         requestor.onload = () => {
+            console.log(JSON.stringify(this.state));
             if (requestor.readyState === requestor.DONE) {
                 if (requestor.status === 200 && requestor.responseText !== 'error') {
                     let response = JSON.parse(requestor.responseText);
-                    console.log(JSON.stringify(response, false, 4));
                     inputData.text = response.output.text[0];
+                    this.setState( {context: response.context} );
                 } else {
                     inputData.text = "I'm sorry, but it looks like an error has occurred."
                 }
                 this.setState({
                     conversation: this.state.conversation.concat(inputData),
-                    lastQuery: inputData.text,
-                    turn: inputData.turn,
-                    context: response.context
+                    turnCount: inputData.turn
                 });
             } //if (requestor.readyState == requestor.DONE)
         } //requestor.onload
-        requestor.send();
+        requestor.send(JSON.stringify(this.state.context));
     } //DeliverMessage
 
     render() {
