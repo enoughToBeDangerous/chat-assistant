@@ -11,7 +11,7 @@ body {
     height: 100%;
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #030407;
+    background-color: #171719;
 }
 
 #root {
@@ -30,13 +30,11 @@ body {
     height: 100%;
     width: 50%;
     margin: 0;
-    padding: 5px;
-    background-color: #171719;
 }
 
 #Conversation-Window {
     background-color: #030407;
-    height: 80%;
+    height: 90%;
     overflow-y: scroll;
     overflow-y: auto;
 }
@@ -55,43 +53,53 @@ body {
     display: inline-block;
     width: auto;
     max-width: 70%;
-    padding: 5px;
+    padding: 10px;
     margin: 5px;
     text-align: left;
 }
 
 .From-Watson {
     color: white;
-    border-left: 5px solid springgreen;
+    /*
+    border-left: 3px solid springgreen;
     border-top-left-radius: 3px;
     border-bottom-left-radius: 3px;
+    */
+    border: 1px solid white;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 .From-User {
     color: cornflowerblue;
-    border: 3px solid cornflowerblue;
-    border-radius: 3px;
+    border: 1px solid cornflowerblue;
+    border-bottom-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
 }
 
 #Input-Section {
     position: absolute;
     bottom: 0;
-    height: 20%;
+    height: 10%;
     width: 50%;
 }
 
 #Input-Form {
-    position: absolute;
-    top: 30%;
+    height: 100%;
     width: 100%;
 }
 
 #Input-Bar {
     display: inline-block;
     padding: 5px;
-    width: 80%;
-    height: 30%;
-    border: 3px solid springgreen;
+    margin-top: 1%;
+    margin-right: 1%;
+    width: 89%;
+    height: 75%;
+    border: 2px solid cornflowerblue;
+    border-radius: 5px;
     background-color:transparent;
     color: white;
 }
@@ -103,15 +111,17 @@ body {
     display: inline-block;
     size: auto;
     padding: 5px;
+    margin-top: 1%;
     width: 10%;
-    height: 30%;
+    height: 75%;
     background-color: transparent;
-    color: springgreen;
+    color: cornflowerblue;
     font-family: inherit;
-    border: 3px solid springgreen;  
+    border: 2px solid cornflowerblue;  
+    border-radius: 5px;
 }
     #Input-Send-Button:hover {
-        background-color: springgreen;
+        background-color: cornflowerblue;
         color: #171719;
         font-weight: bolder;
     }
