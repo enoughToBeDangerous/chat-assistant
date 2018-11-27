@@ -1,0 +1,6 @@
+#dependencies
+./chat-assistant-ui/node_modules
+./chat-assistant-api/node_modules
+
+#misc
+./chat-assistant-api/.env
